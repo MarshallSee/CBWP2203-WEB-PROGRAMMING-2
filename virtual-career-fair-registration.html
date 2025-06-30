@@ -1,83 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Virtual Career Fair Registration</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    .form-container, .output-container {
-      width: 500px;
-      margin: 20px auto;
-      padding: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    label {
-      display: inline-block;
-      width: 150px;
-      margin-bottom: 10px;
-    }
-    input[type="text"], input[type="email"], select, textarea {
-      width: 300px;
-      padding: 5px;
-    }
-    .buttons {
-      text-align: center;
-      margin-top: 15px;
-    }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
 
-<div class="form-container" id="formDiv">
-  <h3>Virtual Career Fair Registration</h3>
-  <form id="registrationForm">
-    <label>Full Name :</label>
-    <input type="text" id="fullName" required><br>
-
-    <label>Email Address :</label>
-    <input type="email" id="email" required><br>
-
-    <label>Phone Number :</label>
-    <input type="text" id="phone" required><br>
-
-    <label>Institution / University :</label>
-    <input type="text" id="institution" required><br>
-
-    <label>Field of Study :</label>
-    <select id="field">
-      <option>-- Select Field --</option>
-      <option>Information Technology</option>
-      <option>Business Administration</option>
-      <option>Engineering</option>
-      <option>Marketing</option>
-    </select><br><br>
-
-    <label>Areas of Interest :</label>
-    <input type="checkbox" name="interest" value="Internship">Internship
-    <input type="checkbox" name="interest" value="Graduate Trainee">Graduate Trainee
-    <input type="checkbox" name="interest" value="Full-time Job">Full-time Job<br><br>
-
-    <label>Additional Comments :</label><br>
-    <textarea id="comments" rows="4" cols="50"></textarea><br>
-
-    <div class="buttons">
-      <button type="button" onclick="submitForm()">Register</button>
-      <button type="reset">Cancel</button>
+<div class="container mt-5" id="formDiv">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="mb-0">Virtual Career Fair Registration</h3>
     </div>
-  </form>
+    <div class="card-body">
+      <form id="registrationForm">
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Full Name</label>
+          <input type="text" id="fullName" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" id="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="text" id="phone" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="institution" class="form-label">Institution / University</label>
+          <input type="text" id="institution" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="field" class="form-label">Field of Study</label>
+          <select id="field" class="form-select">
+            <option>-- Select Field --</option>
+            <option>Information Technology</option>
+            <option>Business Administration</option>
+            <option>Engineering</option>
+            <option>Marketing</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label d-block">Areas of Interest</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interest" value="Internship" id="interestInternship">
+            <label class="form-check-label" for="interestInternship">Internship</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interest" value="Graduate Trainee" id="interestGraduate">
+            <label class="form-check-label" for="interestGraduate">Graduate Trainee</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interest" value="Full-time Job" id="interestFulltime">
+            <label class="form-check-label" for="interestFulltime">Full-time Job</label>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="comments" class="form-label">Additional Comments</label>
+          <textarea id="comments" class="form-control" rows="4"></textarea>
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary me-2" onclick="submitForm()">Register</button>
+          <button type="reset" class="btn btn-secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
-<div class="output-container" id="outputDiv" style="display:none;">
-  <h3>Registration Successful!</h3>
-  <p><strong>Name</strong> : <span id="outName"></span></p>
-  <p><strong>Email</strong> : <span id="outEmail"></span></p>
-  <p><strong>Phone Number</strong> : <span id="outPhone"></span></p>
-  <p><strong>Institution</strong> : <span id="outInstitution"></span></p>
-  <p><strong>Field of Study</strong> : <span id="outField"></span></p>
-  <p><strong>Interest Area</strong> : <span id="outInterest"></span></p>
-  <p><strong>Comments</strong> : <span id="outComments"></span></p>
+<div class="container mt-5" id="outputDiv" style="display:none;">
+  <div class="alert alert-success">
+    <h3 class="alert-heading">Registration Successful!</h3>
+    <p><strong>Name</strong> : <span id="outName"></span></p>
+    <p><strong>Email</strong> : <span id="outEmail"></span></p>
+    <p><strong>Phone Number</strong> : <span id="outPhone"></span></p>
+    <p><strong>Institution</strong> : <span id="outInstitution"></span></p>
+    <p><strong>Field of Study</strong> : <span id="outField"></span></p>
+    <p><strong>Interest Area</strong> : <span id="outInterest"></span></p>
+    <p><strong>Comments</strong> : <span id="outComments"></span></p>
+  </div>
 </div>
 
 <script>
@@ -108,6 +110,6 @@
     document.getElementById("outputDiv").style.display = "block";
   }
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
