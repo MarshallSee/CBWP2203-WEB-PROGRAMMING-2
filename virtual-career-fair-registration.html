@@ -83,7 +83,29 @@
 </div>
 
 <script>
+  function validateInput() {
+    const fields = [
+      "fullName",
+      "email",
+      "phone",
+      "institution",
+      "field",
+      "comments",
+    ];
+    for (const id of fields) {
+      const el = document.getElementById(id);
+      if (!el || !el.value.trim()) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   function submitForm() {
+    if (!validateInput()) {
+      alert("PLEASE ENTER THE VALUES!");
+      return;
+    }
     const name = document.getElementById("fullName").value;
     const email = document.getElementById("email").value;
     const phone = document.getElementById("phone").value;
