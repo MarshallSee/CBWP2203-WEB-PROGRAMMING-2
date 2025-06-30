@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Virtual Career Fair Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .form-container, .output-container {
+      width: 500px;
+      margin: 20px auto;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+      margin-bottom: 10px;
+    }
+    input[type="text"], input[type="email"], select, textarea {
+      width: 300px;
+      padding: 5px;
+    }
+    .buttons {
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container" id="formDiv">
+  <h3>Virtual Career Fair Registration</h3>
+  <form id="registrationForm">
+    <label>Full Name :</label>
+    <input type="text" id="fullName" required><br>
+
+    <label>Email Address :</label>
+    <input type="email" id="email" required><br>
+
+    <label>Phone Number :</label>
+    <input type="text" id="phone" required><br>
+
+    <label>Institution / University :</label>
+    <input type="text" id="institution" required><br>
+
+    <label>Field of Study :</label>
+    <select id="field">
+      <option>-- Select Field --</option>
+      <option>Information Technology</option>
+      <option>Business Administration</option>
+      <option>Engineering</option>
+      <option>Marketing</option>
+    </select><br><br>
+
+    <label>Areas of Interest :</label>
+    <input type="checkbox" name="interest" value="Internship">Internship
+    <input type="checkbox" name="interest" value="Graduate Trainee">Graduate Trainee
+    <input type="checkbox" name="interest" value="Full-time Job">Full-time Job<br><br>
+
+    <label>Additional Comments :</label><br>
+    <textarea id="comments" rows="4" cols="50"></textarea><br>
+
+    <div class="buttons">
+      <button type="button" onclick="submitForm()">Register</button>
+      <button type="reset">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<div class="output-container" id="outputDiv" style="display:none;">
+  <h3>Registration Successful!</h3>
+  <p><strong>Name</strong> : <span id="outName"></span></p>
+  <p><strong>Email</strong> : <span id="outEmail"></span></p>
+  <p><strong>Phone Number</strong> : <span id="outPhone"></span></p>
+  <p><strong>Institution</strong> : <span id="outInstitution"></span></p>
+  <p><strong>Field of Study</strong> : <span id="outField"></span></p>
+  <p><strong>Interest Area</strong> : <span id="outInterest"></span></p>
+  <p><strong>Comments</strong> : <span id="outComments"></span></p>
+</div>
+
+<script>
+  function submitForm() {
+    const name = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const institution = document.getElementById("institution").value;
+    const field = document.getElementById("field").value;
+    const comments = document.getElementById("comments").value;
+
+    let interests = [];
+    document.querySelectorAll('input[name="interest"]:checked').forEach((checkbox) => {
+      interests.push(checkbox.value);
+    });
+
+    // Display data
+    document.getElementById("outName").innerText = name;
+    document.getElementById("outEmail").innerText = email;
+    document.getElementById("outPhone").innerText = phone;
+    document.getElementById("outInstitution").innerText = institution;
+    document.getElementById("outField").innerText = field;
+    document.getElementById("outInterest").innerText = interests.join(", ");
+    document.getElementById("outComments").innerText = comments;
+
+    // Toggle views
+    document.getElementById("formDiv").style.display = "none";
+    document.getElementById("outputDiv").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
